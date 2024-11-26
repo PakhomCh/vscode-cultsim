@@ -3,7 +3,7 @@
 	"displayName": "Cultist Simulator IDE",
 	"description": "Cultist Simulator IDE for Modding Core Game",
 	"version": "1.1.1",
-	"publisher": "Tiinusen",
+	"publisher": "PakhomCh",
 	"engines": {
 		"vscode": "^1.64.0"
 	},
@@ -12,7 +12,7 @@
 		"Visualization",
 		"Other"
 	],
-	"repository": "https://github.com/Tiinusen/vscode-cultsim",
+	"repository": "https://github.com/PakhomCh/vscode-cultsim",
 	"activationEvents": [
 		"onCustomEditor:cultsim.editor.board",
 		"onCommand:cultsim.new.project",
@@ -157,6 +157,7 @@
 		]
 	},
 	"scripts": {
+		"build": "webpack --mode production --devtool hidden-source-map",
 		"vscode:prepublish": "yarn run package",
 		"compile": "webpack",
 		"watch": "webpack --watch",
@@ -182,8 +183,8 @@
 		"raw-loader": "^4.0.2",
 		"ts-loader": "^9.2.6",
 		"typescript": "^4.5.4",
-		"webpack": "^5.66.0",
-		"webpack-cli": "^4.9.1"
+		"webpack": "^5.96.1",
+		"webpack-cli": "^4.10.0"
 	},
 	"dependencies": {
 		"@types/leaflet": "^1.7.9",

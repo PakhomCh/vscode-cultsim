@@ -24,6 +24,7 @@ interface IRecipeSerialized {
     purge: Map<string, number>
     aspects: Map<string, number>
     deckeffects: Map<string, number>
+    inductions: Array<{ id: string }>
     haltverb: Map<string, number>
     deleteverb: Map<string, number>
     actionId: string
@@ -184,6 +185,14 @@ export class Recipe extends Entity<IRecipeSerialized> implements IRecipeSerializ
         this.set('deckeffects', value);
     }
 
+    // inductions
+    public get inductions(): Array<{ id: string }> {
+        return this.get('inductions');
+    }
+    public set inductions(value: Array<{ id: string }>) {
+        this.set('inductions', value);
+    }
+
     // haltverb
     public get haltverb(): Map<string, number> {
         return this.get('haltverb');
@@ -285,6 +294,7 @@ export class Recipe extends Entity<IRecipeSerialized> implements IRecipeSerializ
             purge: this.get('purge'),
             aspects: this.get('aspects'),
             deckeffects: this.get('deckeffects'),
+            inductions: this.get('inductions'),
             haltverb: this.get('haltverb'),
             deleteverb: this.get('deleteverb'),
             actionId: this.get('actionId'),
@@ -320,6 +330,7 @@ export class Recipe extends Entity<IRecipeSerialized> implements IRecipeSerializ
         this.purge = obj?.purge || this.get('purge');
         this.aspects = obj?.aspects || this.get('aspects');
         this.deckeffects = obj?.deckeffects || this.get('deckeffects');
+        this.inductions = obj?.inductions || this.get('inductions');
         this.haltverb = obj?.haltverb || this.get('haltverb');
         this.deleteverb = obj?.deleteverb || this.get('deleteverb');
         this.actionId = obj?.actionId || this.get('actionId');
