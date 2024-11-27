@@ -50,11 +50,11 @@ export class RecipeWidget extends Widget<Recipe, IRecipeWidgetState> {
             this.onUpdate();
         };
 
-        this.inductions = new CustomListComponent(this.board, "inductions", this.element.querySelector('div[name="inductions"]'));
+        /*this.inductions = new CustomListComponent(this.board, "inductions", this.element.querySelector('div[name="inductions"]'));
         this.inductions.onChange = () => {
             this.board.save();
             this.onUpdate();
-        };
+        };*/
 
         this.haltverb = new DictionaryComponent(this.board, "haltverb", "verbs", this.element.querySelector('div[name="haltverb"]'));
         this.haltverb.onChange = () => {
@@ -160,7 +160,7 @@ export class RecipeWidget extends Widget<Recipe, IRecipeWidgetState> {
             await this.purge?.onUpdate(this.data, this?.parentData);
             await this.aspects?.onUpdate(this.data, this?.parentData);
             await this.deckeffects?.onUpdate(this.data, this?.parentData);
-            await this.mutations.onUpdate(this.data, this?.parentData);
+            //await this.inductions.onUpdate(this.data, this?.parentData);
             await this.haltverb?.onUpdate(this.data, this?.parentData);
             await this.deleteverb?.onUpdate(this.data, this?.parentData);
             await this.aspects?.onUpdate(this.data, this?.parentData);
