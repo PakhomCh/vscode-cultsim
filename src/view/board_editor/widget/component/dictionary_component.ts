@@ -23,6 +23,7 @@ export class DictionaryComponent {
         this._board = board;
         element.toggleAttribute('dictionary', true);
         this._list = element.querySelector('*[items]');
+        console.log(element.querySelector('*[items]'));
         this._template = element.querySelector('*[items] > *[template]');
         this._template.remove();
         this._addButton = element.querySelector('*[add]');

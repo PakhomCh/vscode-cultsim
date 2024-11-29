@@ -99,6 +99,9 @@
                     </div>
                 </td>
                 <td>
+                    <!-- actionid -->
+                    <input name="actionId" placeholder="Verb to Run In"
+                        title="This specifies the verb this recepie is run in." />
                     <table>
                         <tr>
                             <td>
@@ -492,6 +495,34 @@
                         <div title="Click to add alternative recipe" add>
                             <i class="fa-solid fa-plus"></i>
                             <label>Add</label>
+                        </div>
+                    </div>
+
+                    <!-- inductions -->
+                    <div name="inductions">
+                        <h1
+                            title="A list of recipes to be executed after the current recipe is resolved, in other verbs.">
+                            Inductions</h1>
+                        <div items>
+                            <div template>
+                                <label name="id">ID</label>
+                            </div>
+                        </div>
+                        <div title="Click to add an induction." add>
+                            <i class="fa-solid fa-plus"></i>
+                            <label>Add</label>
+                        </div>
+                        <div panel>
+                            <!-- close button -->
+                            <i class="fa-solid fa-xmark" title="Click to close" close></i>
+
+                            <!-- delete button -->
+                            <i class="fa-solid fa-trash" title="Click to remove" delete></i>
+
+                            <!-- filter -->
+                            <h1 no-margin name="id" key content-type="recipes"
+                                title="used to find the recepie that will be started.">Induction</h1>
+
                         </div>
                     </div>
                 </td>

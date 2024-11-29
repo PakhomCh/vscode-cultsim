@@ -24,7 +24,6 @@ interface IRecipeSerialized {
     purge: Map<string, number>
     aspects: Map<string, number>
     deckeffects: Map<string, number>
-    inductions: Array<{ id: string }>
     haltverb: Map<string, number>
     deleteverb: Map<string, number>
     actionId: string
@@ -35,6 +34,7 @@ interface IRecipeSerialized {
     mutations: Array<{ filter: string, mutate: string, level: number, additive: boolean }>
     alt: Array<AlternativeRecipe>
     linked: Array<{ id: string, chance: number }>
+    inductions: Array<{ id: string }>
 }
 
 /**
@@ -185,14 +185,6 @@ export class Recipe extends Entity<IRecipeSerialized> implements IRecipeSerializ
         this.set('deckeffects', value);
     }
 
-    // inductions
-    public get inductions(): Array<{ id: string }> {
-        return this.get('inductions');
-    }
-    public set inductions(value: Array<{ id: string }>) {
-        this.set('inductions', value);
-    }
-
     // haltverb
     public get haltverb(): Map<string, number> {
         return this.get('haltverb');
@@ -273,6 +265,14 @@ export class Recipe extends Entity<IRecipeSerialized> implements IRecipeSerializ
         this.set('linked', value);
     }
 
+    // inductions
+    public get inductions(): Array<{ id: string }> {
+        return this.get('inductions');
+    }
+    public set inductions(value: Array<{ id: string }>) {
+        this.set('inductions', value);
+    }
+
 
     public toJSON(): IRecipeSerialized | any {
         const response = {
@@ -294,7 +294,6 @@ export class Recipe extends Entity<IRecipeSerialized> implements IRecipeSerializ
             purge: this.get('purge'),
             aspects: this.get('aspects'),
             deckeffects: this.get('deckeffects'),
-            inductions: this.get('inductions'),
             haltverb: this.get('haltverb'),
             deleteverb: this.get('deleteverb'),
             actionId: this.get('actionId'),
@@ -306,6 +305,7 @@ export class Recipe extends Entity<IRecipeSerialized> implements IRecipeSerializ
             alt: this?.alt?.map(recipe => new AlternativeRecipe(recipe).toJSON()),
             expulsion: this.get('expulsion'),
             linked: this.get('linked'),
+            inductions: this.get('inductions'),
         };
         if (response.slots && response.slots.length === 0) response.slots = void 0;
         if (response.alt && response.alt.length === 0) response.alt = void 0;
@@ -330,7 +330,6 @@ export class Recipe extends Entity<IRecipeSerialized> implements IRecipeSerializ
         this.purge = obj?.purge || this.get('purge');
         this.aspects = obj?.aspects || this.get('aspects');
         this.deckeffects = obj?.deckeffects || this.get('deckeffects');
-        this.inductions = obj?.inductions || this.get('inductions');
         this.haltverb = obj?.haltverb || this.get('haltverb');
         this.deleteverb = obj?.deleteverb || this.get('deleteverb');
         this.actionId = obj?.actionId || this.get('actionId');
@@ -340,6 +339,7 @@ export class Recipe extends Entity<IRecipeSerialized> implements IRecipeSerializ
         this.portaleffect = obj?.portaleffect || this.get('portaleffect');
         this.mutations = obj?.mutations || this.get('mutations');
         this.linked = obj?.linked || this.get('linked');
+        this.inductions = obj?.inductions || this.get('inductions');
 
         this.slots = obj?.slots || this.get('slots');
         const slots = [];

@@ -126,22 +126,6 @@
                 "$ref": "#/definitions/dictionary",
                 "description": "This is a set of deck IDs that are drawn from the specified number of times and added to the element list at the conclusion of the recipe."
             },
-            "inductions": {
-                "type": "array",
-                "description": "This starts the specified recepie or multiple recepies.",
-                "additionalItems": false,
-                "items": {
-                    "type": "object",
-                    "description": "A recepie that should be started as a result of this one.",
-                    "additionalProperties": false,
-                    "properties": {
-                        "id": {
-                            "type": "string",
-                            "description": "And Id of a created recepie"
-                        }
-                    }
-                }
-            },
             "haltverb": {
                 "$ref": "#/definitions/dictionary",
                 "description": "This halts the specified verb up to the given (and seemingly required) number of different tokens. The active recipe transitions into a closable form that is signified by the clickable button at the bottom left corner of the token. Ending the recipe in the verb will delete the verb token and return any cards still in the stack."
@@ -281,6 +265,23 @@
                         },
                         "challenges": {
                             "$comment": "@TODO: Research and provide proper meta"
+                        }
+                    }
+                }
+            },
+            "inductions": {
+                "type": "array",
+                "title": "Inductions",
+                "description": "A list of recipes to be executed after the current recipe is resolved, in other verbs.",
+                "additionalItems": false,
+                "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "title": "Induction",
+                    "properties": {
+                        "id": {
+                            "type": "string",
+                            "description": "The ID of the recipe to be executed."
                         }
                     }
                 }

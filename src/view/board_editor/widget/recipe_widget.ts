@@ -25,13 +25,14 @@ export class RecipeWidget extends Widget<Recipe, IRecipeWidgetState> {
     private purge: DictionaryComponent;
     private aspects: DictionaryComponent;
     private deckeffects: DictionaryComponent;
-    private inductions: CustomListComponent;
     private haltverb: DictionaryComponent;
     private deleteverb: DictionaryComponent;
+    // private actionId: DictionaryComponent;
     private internaldeck: InternalDeckComponent<RecipeWidget>;
     private mutations: CustomListComponent;
     private alt: CustomListComponent;
     private linked: PercentageListComponent;
+    private inductions: CustomListComponent;
     private ending: PickerComponent;
 
     constructor(board: Board, data: Recipe) {
@@ -50,12 +51,6 @@ export class RecipeWidget extends Widget<Recipe, IRecipeWidgetState> {
             this.onUpdate();
         };
 
-        /*this.inductions = new CustomListComponent(this.board, "inductions", this.element.querySelector('div[name="inductions"]'));
-        this.inductions.onChange = () => {
-            this.board.save();
-            this.onUpdate();
-        };*/
-
         this.haltverb = new DictionaryComponent(this.board, "haltverb", "verbs", this.element.querySelector('div[name="haltverb"]'));
         this.haltverb.onChange = () => {
             this.save();
@@ -65,7 +60,12 @@ export class RecipeWidget extends Widget<Recipe, IRecipeWidgetState> {
         this.deleteverb.onChange = () => {
             this.save();
             this.onUpdate();
-        };
+        };/*
+        this.actionId = new DictionaryComponent(this.board, "actionId", "verbs", this.element.querySelector('div[name="actionid"]'));
+        this.actionId.onChange = () => {
+            this.save();
+            this.onUpdate();
+        };*/
         this.purge = new DictionaryComponent(this.board, "purge", "elements", this.element.querySelector('div[name="purge"]'));
         this.purge.onChange = () => {
             this.save();
@@ -135,6 +135,12 @@ export class RecipeWidget extends Widget<Recipe, IRecipeWidgetState> {
             this.save();
             this.onUpdate();
         };
+
+        this.inductions = new CustomListComponent(this.board, "inductions", this.element.querySelector('div[name="inductions"]'));
+        this.inductions.onChange = () => {
+            this.board.save();
+            this.onUpdate();
+        };
     }
 
     protected async onUpdate() {
@@ -160,15 +166,16 @@ export class RecipeWidget extends Widget<Recipe, IRecipeWidgetState> {
             await this.purge?.onUpdate(this.data, this?.parentData);
             await this.aspects?.onUpdate(this.data, this?.parentData);
             await this.deckeffects?.onUpdate(this.data, this?.parentData);
-            //await this.inductions.onUpdate(this.data, this?.parentData);
             await this.haltverb?.onUpdate(this.data, this?.parentData);
             await this.deleteverb?.onUpdate(this.data, this?.parentData);
+            // await this.actionId?.onUpdate(this.data, this?.parentData);
             await this.aspects?.onUpdate(this.data, this?.parentData);
             await this.slots.onUpdate(this.data, this?.parentData);
             await this.internaldeck.onUpdate(this.data, this?.parentData);
             await this.ending.onUpdate(this.data, this?.parentData);
             await this.mutations.onUpdate(this.data, this?.parentData);
             await this.linked.onUpdate(this.data, this?.parentData);
+            await this.inductions.onUpdate(this.data, this?.parentData);
             await this.alt.onUpdate(this.data, this?.parentData);
             this.element.toggleAttribute('large', this.slots.size >= 3);
             this.slots.open(this?.state?.openSlot || 0);
